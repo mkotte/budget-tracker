@@ -1,4 +1,4 @@
-// framed from week 18 activity 23
+// framed from week 18 activity 13 and 23
 const FILES_TO_CACHE = [
     '/',
     '/index.html',
@@ -6,7 +6,7 @@ const FILES_TO_CACHE = [
     '/icons/icon-192x192.png',
     '/icons/icon-512x512.png',
     '/manifest.json',
-    '/indexedDB.js'
+    '/db.js'
 ];
 
 const PRECACHE = 'budget-tracker-cache-v1';
@@ -49,7 +49,7 @@ self.addEventListener('fetch', (event) => {
             caches.match(event.request).then((cachedResponse) => {
                 if (cachedResponse) {
                     return cachedResponse
-                }
+                };
                 return caches.open(RUNTIME).then((cache) => {
                     return fetch(event.request).then((response) => {
                         return cache.put(event.request, response.clone()).then(() => {
